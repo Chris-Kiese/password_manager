@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:password_manager/src/constant/routes/routes.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: _buildAppBar(), body: _buildBody());
+    return Scaffold(appBar: _buildAppBar(), body: _buildBody(context));
   }
 
   _buildAppBar() {
@@ -27,13 +28,13 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  _buildBody() {
+  _buildBody(BuildContext context) {
     return Container(
       alignment: Alignment.center,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          _buildVaultButton(),
+          _buildVaultButton(context),
           const SizedBox(
             height: 100,
           ),
@@ -43,11 +44,12 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  _buildVaultButton() {
+  _buildVaultButton(BuildContext context) {
     return ElevatedButton(
       child: const Text('Enter Vault'),
       onPressed: () {
         //TODO: enter vault page
+        Navigator.pushNamed(context, vaultRoute);
       },
     );
   }
