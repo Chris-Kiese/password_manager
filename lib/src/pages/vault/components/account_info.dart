@@ -14,7 +14,7 @@ class AccountInfo extends StatelessWidget {
           width: MediaQuery.of(context).size.width * 0.9,
           child: Column(children: <Widget>[
             const SizedBox(width: 10),
-            account.username.isNotEmpty
+            account.username!.isNotEmpty
                 ? _buildUsername()
                 : const SizedBox(height: 10),
             const SizedBox(height: 10),
@@ -35,7 +35,7 @@ class AccountInfo extends StatelessWidget {
         ),
         const SizedBox(width: 20),
         Text(
-          account.username,
+          account.username ?? '',
           style: const TextStyle(color: Colors.white),
         )
       ],

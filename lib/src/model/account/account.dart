@@ -2,7 +2,7 @@ class Account {
   int? id;
   String name;
   String password;
-  String username;
+  String? username;
 
   Account(this.name, this.username, this.password, [this.id]);
 
