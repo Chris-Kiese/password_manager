@@ -1,12 +1,9 @@
 import 'package:encrypt/encrypt.dart';
+import 'package:password_manager/src/constant/keys/keys.dart';
 import 'package:password_manager/src/constant/storage/storage.dart';
 
 Future<String> encrypt(String password) async {
-  String? _masterKey = await secureStorage.read(key: 'MasterKey');
-
-  if (_masterKey!.length < 32) {
-    _masterKey = await masterKey32(masterKey: _masterKey);
-  }
+  String _masterKey = await masterKey32();
 
   final key = Key.fromUtf8(_masterKey);
   final iv = IV.fromLength(16);
@@ -16,18 +13,18 @@ Future<String> encrypt(String password) async {
 }
 
 Future<String> decrypt(String encrypted) async {
-  String masterKey = await masterKey32();
+  String _masterKey = await masterKey32();
 
-  final key = Key.fromUtf8(masterKey);
+  final key = Key.fromUtf8(_masterKey);
   final iv = IV.fromLength(16);
   final encrypter = Encrypter(AES(key));
 
   return encrypter.decrypt64(encrypted, iv: iv); //decrypted
 }
 
-Future<String> masterKey32({String? masterKey}) async {
-  masterKey ??= await secureStorage.read(key: 'MasterKey');
-  String _masterKey = masterKey!;
+Future<String> masterKey32() async {
+  String? _masterKeyNullable = await secureStorage.read(key: masterKey);
+  String _masterKey = _masterKeyNullable!;
 
   if (_masterKey.length < 32) {
     int remaining = (32 - masterKey.length);
