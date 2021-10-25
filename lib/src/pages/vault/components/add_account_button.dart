@@ -15,7 +15,6 @@ class AddAccountButton extends StatelessWidget {
       child: GestureDetector(
         onTap: () {
           Navigator.of(context).push(HeroDialogRoute(builder: (context) {
-            //TODO:
             return const AddAccountPopup();
           }));
         },

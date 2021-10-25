@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:password_manager/src/model/account/account.dart';
+import 'package:password_manager/src/model/account/model.dart';
 
 class AccountInfo extends StatelessWidget {
   const AccountInfo({Key? key, required this.account}) : super(key: key);

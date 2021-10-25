@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/src/provider.dart';
+import 'package:password_manager/src/constant/provider/provider.dart';
 import 'package:password_manager/src/constant/routes/routes.dart';
 
 class HomePage extends StatelessWidget {
@@ -20,7 +22,7 @@ class HomePage extends StatelessWidget {
             Icons.settings,
             color: Colors.white,
           ),
-          onPressed: () {
+          onPressed: () async {
             //TODO: push settings route
           },
         )
@@ -38,7 +40,7 @@ class HomePage extends StatelessWidget {
           const SizedBox(
             height: 100,
           ),
-          _buildGeneratorButton()
+          _buildGeneratorButton(context)
         ],
       ),
     );
@@ -54,9 +56,9 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  _buildGeneratorButton() {
+  _buildGeneratorButton(BuildContext context) {
     return ElevatedButton(
-      child: const Text('Enter Vault'),
+      child: const Text('Generator'),
       onPressed: () {
         //TODO: enter generator page
       },

@@ -1,4 +1,4 @@
-import 'package:password_manager/src/model/account/account.dart';
+import 'package:password_manager/src/model/account/model.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
@@ -32,12 +32,14 @@ class DatabaseHelper {
     int res = 0;
     Database db = await instance.database;
     res = await db.insert(_tableName, _account.toMap());
+    print('account added');
     return res;
   }
 
   Future<List<Account>> getAccounts({String? search}) async {
     search = search ?? '';
-    final List<Map<String, dynamic>> query = await _db!.query(_tableName,
+    Database db = await instance.database;
+    final List<Map<String, dynamic>> query = await db.query(_tableName,
         where: 'name LIKE ?',
         whereArgs: ['%$search%'],
         orderBy: 'LOWER(name) ASC, LOWER(username) ASC, LOWER(password)');

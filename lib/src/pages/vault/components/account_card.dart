@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:password_manager/src/model/account/account.dart';
+import 'package:password_manager/src/model/account/model.dart';
 import 'package:password_manager/src/pages/vault/components/account_info.dart';
 
 class AccountCard extends StatelessWidget {

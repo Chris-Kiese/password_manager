@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:password_manager/src/constant/provider/provider.dart';
 import 'package:password_manager/src/constant/tags/tags.dart';
+import 'package:password_manager/src/model/account/model.dart';
 import 'package:password_manager/src/widget/hero_popup/custom_rect_tween.dart';
+import 'package:flutter_riverpod/src/provider.dart';
+import 'package:password_manager/src/constant/provider/provider.dart';
 
 class AddAccountPopup extends StatelessWidget {
   const AddAccountPopup({Key? key}) : super(key: key);
@@ -74,8 +78,13 @@ class _AddAccountFormState extends State<_AddAccountForm> {
                 ),
               ),
               ElevatedButton(
-                  onPressed: () {
-                    //TODO: add account
+                  onPressed: () async {
+                    if (!_formKey.currentState!.validate()) return;
+                    context.read(accountProvider.notifier).add(Account(
+                        _nameController.text,
+                        _usernameController.text,
+                        _passwordController.text));
+                    Navigator.of(context).pop();
                   },
                   child: const Text('Add'))
             ],
