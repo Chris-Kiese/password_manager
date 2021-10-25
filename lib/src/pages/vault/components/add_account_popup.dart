@@ -3,8 +3,8 @@ import 'package:password_manager/src/constant/provider/provider.dart';
 import 'package:password_manager/src/constant/tags/tags.dart';
 import 'package:password_manager/src/model/account/model.dart';
 import 'package:password_manager/src/widget/hero_popup/custom_rect_tween.dart';
+// ignore: implementation_imports
 import 'package:flutter_riverpod/src/provider.dart';
-import 'package:password_manager/src/constant/provider/provider.dart';
 
 class AddAccountPopup extends StatelessWidget {
   const AddAccountPopup({Key? key}) : super(key: key);

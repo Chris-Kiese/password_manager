@@ -13,14 +13,13 @@ class AccountNotifier extends StateNotifier<List<Account>> {
     notify();
   }
 
-  void remove(Account account, BuildContext context) {
-    //Delete account from database
-    db.deleteAccount(account.id!);
+  void remove(int id) {
+    db.deleteAccount(id);
     notify();
     //Todo: add toast
   }
 
-  void edit(Account account, BuildContext context) {
+  void edit(Account account) {
     //TODO: db.update(account);
     notify();
     //Todo: add toast

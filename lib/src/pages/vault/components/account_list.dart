@@ -8,20 +8,24 @@ class AccountList extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ScopedReader watch) {
-    final accountList = watch(accountProvider);
+    final _accountList = watch(accountProvider);
 
     return Padding(
       padding: const EdgeInsets.fromLTRB(8, 16, 8, 0),
-      child: GridView.builder(
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 1,
-          mainAxisSpacing: 20,
-          childAspectRatio: 2.5,
-        ),
-        itemCount: accountList.length,
-        itemBuilder: (context, index) =>
-            AccountCard(account: accountList[index]),
-      ),
+      child: _accountList.isNotEmpty
+          ? GridView.builder(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 1,
+                mainAxisSpacing: 20,
+                childAspectRatio: 2.5,
+              ),
+              itemCount: _accountList.length,
+              itemBuilder: (context, index) =>
+                  AccountCard(account: _accountList[index]),
+            )
+          : const Center(
+              child: Text('No Account yet'),
+            ),
     );
   }
 }

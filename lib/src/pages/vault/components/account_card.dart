@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:password_manager/src/constant/provider/provider.dart';
 import 'package:password_manager/src/model/account/model.dart';
 import 'package:password_manager/src/pages/vault/components/account_info.dart';
+// ignore: implementation_imports
+import 'package:flutter_riverpod/src/provider.dart';
 
 class AccountCard extends StatelessWidget {
   const AccountCard({Key? key, required this.account}) : super(key: key);
@@ -105,7 +108,7 @@ class AccountCard extends StatelessWidget {
       ),
       confirmDismiss: (direction) async {
         if (direction == DismissDirection.endToStart) {
-          //TODO: delete account
+          context.read(accountProvider.notifier).remove(account.id!);
         } else {
           //TODO: Edit Acchount
         }
